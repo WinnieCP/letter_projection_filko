@@ -47,10 +47,19 @@ for (let row = 0; row < gridSize_x; row++) {
     }
   }
 
-// Track mouse movement
-svgContainer.addEventListener('mousemove', (event) => {
-    const { offsetX, offsetY } = event;
-  
+
+  const handleMove = (event) => {
+  event.preventDefault();
+
+  let offsetX, offsetY;
+
+  if (event.type === 'mousemove') {
+    offsetX = event.offsetX;
+    offsetY = event.offsetY;
+  } else if (event.type === 'touchmove') {
+    offsetX = event.touches[0].clientX - svg.getBoundingClientRect().left;
+    offsetY = event.touches[0].clientY - svg.getBoundingClientRect().top;
+  }
     // Check if the mouse is within the grid area
     const gridRect = svg.getBoundingClientRect();
     if (
@@ -81,7 +90,10 @@ svgContainer.addEventListener('mousemove', (event) => {
         single_k.setAttribute('transform', `skewX(${skewAngle_x}) scale(1, ${scalingFactor}) `);
         }
     } 
-  });
+  };
+  svgContainer.addEventListener('mousemove', handleMove);
+  svgContainer.addEventListener('touchmove', handleMove);
+
 // Track mouse movement
 svgContainer.addEventListener('mouseleave', () => {
     const kShadow = document.getElementsByClassName('k-shadow');
@@ -92,4 +104,12 @@ svgContainer.addEventListener('mouseleave', () => {
     }
   });
 
-  
+  svgContainer.addEventListener('touchend', () => {
+    const kShadow = document.getElementsByClassName('k-shadow');
+    for (let i = 0; i < kShadow.length; i++) {
+      const single_k = kShadow[i];
+      single_k.setAttribute('transform', `skewX(20) scale(1, 1) `);
+
+    }
+  });
+
