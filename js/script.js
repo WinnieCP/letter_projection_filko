@@ -57,8 +57,12 @@ for (let row = 0; row < gridSize_x; row++) {
     offsetX = event.offsetX;
     offsetY = event.offsetY;
   } else if (event.type === 'touchmove') {
-    offsetX = event.touches[0].clientX - svg.getBoundingClientRect().left;
-    offsetY = event.touches[0].clientY - svg.getBoundingClientRect().top;
+      event.preventDefault();
+      const touch = event.touches[0];
+      const rect = svgContainer.getBoundingClientRect();
+      const offsetX = touch.clientX - rect.left;
+      const offsetY = touch.clientY - rect.top;
+
   }
     // Check if the mouse is within the grid area
     const gridRect = svg.getBoundingClientRect();
