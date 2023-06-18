@@ -23,7 +23,7 @@ for (let row = 0; row < gridSize_x; row++) {
     kShadow.setAttribute('y', (row + 0.5) * letterHeight);
     kShadow.setAttribute('fill', 'rgb(255, 48, 0)');
     kShadow.setAttribute('font-size', '36px'); // Change the font size here
-    kShadow.setAttribute('font-family', 'Arial'); // Change the font type here
+    kShadow.setAttribute('font-family', 'Airo'); // Change the font type here
     const originalX = parseFloat(kShadow.getAttribute('x'));
     const originalY = parseFloat(kShadow.getAttribute('y'));
     kShadow.setAttribute('transform-origin', `${originalX + letterWidth / 2}px ${originalY}px`);
@@ -41,7 +41,7 @@ for (let row = 0; row < gridSize_x; row++) {
       f.setAttribute('y', (row + 0.5) * letterHeight);
       f.setAttribute('fill', 'rgb(0, 86, 209)');
       f.setAttribute('font-size', '36px'); // Change the font size here
-      f.setAttribute('font-family', 'Arial'); // Change the font type here
+      f.setAttribute('font-family', 'Airo'); // Change the font type here
 
       svg.appendChild(f);
     }
