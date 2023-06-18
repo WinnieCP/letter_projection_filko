@@ -6,8 +6,8 @@ svg.setAttribute('height', '100%');
 svgContainer.appendChild(svg);
 
 // Define the grid size and letter size
-const gridSize_x = 4;
-const gridSize_y = 4;
+const gridSize_x = 10;
+const gridSize_y = 10;
 const letterWidth = svgContainer.offsetWidth / (gridSize_x)
 const letterHeight = svgContainer.offsetHeight / (gridSize_y)
 
@@ -19,12 +19,16 @@ for (let row = 0; row < gridSize_x; row++) {
     const kShadow = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     if (row === gridSize_y - 1 ) {
       if (col === 0){
-      kShadow.textContent = 'Aktuelle Filmreihe';}
+      kShadow.textContent = 'Aktuelle Filmreihe';
+      kShadow.setAttribute('transform', `skewX(4)`);}
+
       else{
         kShadow.textContent = '';}
     }
     else{
-    kShadow.textContent = 'k';}
+    kShadow.textContent = 'k';
+    kShadow.setAttribute('transform', `skewX(20)`);
+  }
     kShadow.setAttribute('class', 'k-shadow');
     kShadow.setAttribute('x', (col + 0.5) * letterWidth);
     kShadow.setAttribute('y', (row + 0.5) * letterHeight);
@@ -34,7 +38,6 @@ for (let row = 0; row < gridSize_x; row++) {
     const originalX = parseFloat(kShadow.getAttribute('x'));
     const originalY = parseFloat(kShadow.getAttribute('y'));
     kShadow.setAttribute('transform-origin', `${originalX + letterWidth / 2}px ${originalY}px`);
-    kShadow.setAttribute('transform', `skewX(20)`);
 
     svg.appendChild(kShadow);
   }
@@ -117,8 +120,13 @@ svgContainer.addEventListener('mouseleave', () => {
     const kShadow = document.getElementsByClassName('k-shadow');
     for (let i = 0; i < kShadow.length; i++) {
       const single_k = kShadow[i];
-      single_k.setAttribute('transform', `skewX(20) scale(1, 1) `);
-
+      if (i >= gridSize_x * (gridSize_y-1)){
+        single_k.setAttribute('transform', `skewX(5) scale(1, 1)`);
+      }
+      else{
+        single_k.setAttribute('transform', `skewX(20) scale(1, 1) `);
+      
+    }
     }
   });
 
@@ -126,8 +134,13 @@ svgContainer.addEventListener('mouseleave', () => {
     const kShadow = document.getElementsByClassName('k-shadow');
     for (let i = 0; i < kShadow.length; i++) {
       const single_k = kShadow[i];
-      single_k.setAttribute('transform', `skewX(20) scale(1, 1) `);
-
+      if (i > gridSize_x * (gridSize_y-1)){
+        single_k.setAttribute('transform', `skewX(5) scale(1, 1)`);
+      }
+      else{
+        single_k.setAttribute('transform', `skewX(20) scale(1, 1) `);
+      
     }
+  }
   });
 
