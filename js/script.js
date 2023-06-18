@@ -17,7 +17,14 @@ const letterHeight = svgContainer.offsetHeight / (gridSize_y)
 for (let row = 0; row < gridSize_x; row++) {
   for (let col = 0; col < gridSize_y; col++) {
     const kShadow = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    kShadow.textContent = 'k';
+    if (row === gridSize_y - 1 ) {
+      if (col === 0){
+      kShadow.textContent = 'Aktuelle Filmreihe';}
+      else{
+        kShadow.textContent = '';}
+    }
+    else{
+    kShadow.textContent = 'k';}
     kShadow.setAttribute('class', 'k-shadow');
     kShadow.setAttribute('x', (col + 0.5) * letterWidth);
     kShadow.setAttribute('y', (row + 0.5) * letterHeight);
@@ -36,7 +43,14 @@ for (let row = 0; row < gridSize_x; row++) {
 for (let row = 0; row < gridSize_x; row++) {
     for (let col = 0; col < gridSize_y; col++) {
       const f = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      f.textContent = 'f';
+      if (row === gridSize_y - 1 ) {
+        if (col === 0){
+        f.textContent = 'Aktuelle Filmreihe';}
+        else{
+          f.textContent = '';}
+      }
+      else{
+      f.textContent = 'f';}
       f.setAttribute('x', (col + 0.5) * letterWidth);
       f.setAttribute('y', (row + 0.5) * letterHeight);
       f.setAttribute('fill', 'rgb(0, 86, 209)');
