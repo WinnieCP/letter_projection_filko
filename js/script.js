@@ -6,8 +6,8 @@ svg.setAttribute('height', '100%');
 svgContainer.appendChild(svg);
 
 // Define the grid size and letter size
-const gridSize_x = 10;
-const gridSize_y = 10;
+const gridSize_x = 4;
+const gridSize_y = 4;
 const letterWidth = svgContainer.offsetWidth / (gridSize_x)
 const letterHeight = svgContainer.offsetHeight / (gridSize_y)
 
